@@ -19,8 +19,8 @@ jobs:
     - name: Build application
       run: npm install
     - name: Start application
-      run: npm start
-    - name: run unit tests
+      run: npm start &
+    - name: Test the application
       run: npm run test:unit
     - name: Display SoftUni username
       run: echo Martin13s18
