@@ -20,7 +20,7 @@ jobs:
       run: npm install
     - name: Start application
       run: npm start
-    - name: Run unit tests
+    - name: run unit tests
       run: npm run test:unit
     - name: Display SoftUni username
       run: echo Martin13s18
