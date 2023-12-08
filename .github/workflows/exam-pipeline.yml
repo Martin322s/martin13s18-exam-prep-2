@@ -2,25 +2,37 @@ name: library-application-exam
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js -v
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: 'npm'
-    - name: Build application
-      run: npm install
-    - name: Start application
-      run: npm start &
-    - name: Test the application
-      run: npm run test:unit
-    - name: Display SoftUni username
-      run: echo Martin13s18
+      - uses: actions/checkout@v3
+      - name: Use Node.js -v
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "npm"
+      - name: Build application
+        run: npm install
+      - name: Start application
+        run: npm start &
+      - name: Test the application
+        run: npm run test:unit
+      - name: Display SoftUni username
+        run: echo Martin13s18
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_TOKEN }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+      - name: Wait for deploy
+        run: sleep 60
