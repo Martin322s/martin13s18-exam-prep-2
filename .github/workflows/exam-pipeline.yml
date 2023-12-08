@@ -1,4 +1,4 @@
-name: Node.js CI
+name: library-application-exam
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -16,3 +16,12 @@ jobs:
       with:
         node-version: 18.x
         cache: 'npm'
+    - name: Build application
+      uses: npm install
+    - name: Start application
+      uses: npm start
+    - name: Run unit tests
+      uses: npm run test:unit
+    - name: Display SoftUni username
+      uses: echo Martin13s18
+      
