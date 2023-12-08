@@ -22,4 +22,5 @@ jobs:
       run: npm start &
     - name: Test the application
       run: npm run test:unit
-    - run: Display SoftUni username Martin13s18
+    - name: Display SoftUni username
+      run: echo Martin13s18
